@@ -2,6 +2,6 @@
 *.class
 
 # Package Files #
-*.properties
+
 *.war
 *.ear
