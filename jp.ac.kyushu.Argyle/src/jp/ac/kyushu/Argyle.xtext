@@ -1,0 +1,23 @@
+grammar jp.ac.kyushu.Argyle with org.eclipse.xtext.common.Terminals
+
+generate argyle "http://www.ac.jp/kyushu/Argyle"
+
+Model:
+	imports+=Import*
+	calc+=Calc*
+;
+	
+Import:
+	('ImportGitLog' importPath =STRING)|
+	('ImportMbox' importPath=STRING)|
+	('ImportGitRepository' importPath=STRING)|
+	('ImportCodeDir' importPath=STRING)
+;
+	
+	
+	
+Calc:
+	('SetDetectMinSize' size=INT)|
+	('UseThread' thread=INT)|
+	('Output' outputPath=STRING)
+;

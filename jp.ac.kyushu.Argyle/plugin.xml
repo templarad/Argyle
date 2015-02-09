@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.ac.jp/kyushu/Argyle" 
+       class = "jp.ac.kyushu.argyle.ArgylePackage"
+       genModel = "model/generated/Argyle.genmodel" /> 
+	
+  </extension>
+
+
+
+</plugin>
