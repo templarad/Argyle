@@ -1,0 +1,16 @@
+//データを管理するクラスを宣言する
+DataLoader mr = new DataLoader();
+	
+//メールデータを追加する
+mr.insertMbox(mboxfile name);
+
+//GitLogデータを追加する
+mr.insertDevInfo(commit log file name);
+        
+//ソーシャルネットワークメトリクスを算出する
+new CalMetrics(mr.getDataManager());
+
+//グラフを描画する
+CreateSNAData csd = new CreateSNAData(mr.getDataManager());
+GraphViewer gv = new GraphViewer(csd.getGraph());
+gv.draw();            

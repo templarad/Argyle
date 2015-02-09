@@ -1,0 +1,47 @@
+Num Changes Co-Changed Files(以降，NCCF)の計算プログラムの説明
+2015/1/11
+
+●構成説明
+nccf_input.zip
+	入力ファイルを圧縮したもの
+	解凍して使ってください
+src/
+	javaのソースファイル群
+readme.txt
+	このファイル
+ses2013_osaka.pdf
+	SES2013のときの論文
+
+
+○実行方法
+メインクラス：
+src/journal/nccf/thread/exe/Execute.java
+
+引数：
+args[0]:スレッド数
+args[1]:入力ファイルのパス
+args[2]:出力結果を書き込むファイルのパス
+
+実行例：
+$ java journal.nccf.thread.exe.Execute 4 input/eclipse/e_all.txt output.txt
+
+
+○javaのソースファイル群について簡単な説明
+NCCFの計算には3つの処理があり，
+それぞれParse,Step1,Step2としています．
+src/journal/nccf/thread/以下にあるファイルがそれらに対応している．
+
+
+○入力ファイル
+各行が1コミットになっていて，少し特殊な形で記述されている．
+
+androidとeclipseのデータセットを使っており，
+androidを例にファイルの違いを説明すると，
+・a_2009.txt : 2009年の1年分のコミット
+・a_200901.txt : 2009年1月の1ヶ月分のコミット
+・a_200901-half.txt : 2009年1月から半年分のコミット
+・a_200901-weak.txt : 2009年1月1-7日の1週間分のコミット
+・a_all.txt : 2005-20011年の全期間のコミット
+
+ses2013_osaka.pdfの4.3にデータセットについて少し書いてあります．
+

@@ -8,16 +8,16 @@ Model:
 ;
 	
 Import:
-	('ImportGitLog' importPath =STRING)|
-	('ImportMbox' importPath=STRING)|
-	('ImportGitRepository' importPath=STRING)|
-	('ImportCodeDir' importPath=STRING)
+	('ImportGitLog' importPath =STRING ';')|
+	('ImportMbox' importPath=STRING ';')|
+	('ImportGitRepository' importPath=STRING ';')|
+	('ImportCodeDir' importPath=STRING ';')
 ;
 	
 	
 	
 Calc:
-	('SetDetectMinSize' size=INT)|
-	('UseThread' thread=INT)|
-	('Output' outputPath=STRING)
+	('SetDetectMinSize' size=INT ';')|
+	('UseThread' thread=INT ';')|
+	('Output' outputPath=STRING ';')
 ;
