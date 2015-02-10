@@ -1,5 +1,7 @@
 package jp.ac.kyushu.argyle.impl.actions;
 
+import java.util.List;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
@@ -9,6 +11,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import jp.ac.kyushu.argyle.impl.ArgyleModelReader;
 import jp.ac.kyushu.argyle.impl.basefunction.ProjectReader;
 import lombok.extern.slf4j.Slf4j;
+import jp.ac.kyushu.argyle.Import;
 import jp.ac.kyushu.argyle.Model;
 
 
@@ -22,7 +25,7 @@ public class ArgyleController {
 	public static void run(){
 		aglFile = null;
 		log.debug("It runs!");
-		//ArgyleDispatcher dispatcher = ArgyleDispatcher.getInstance();
+		ArgyleDispatcher dispatcher = ArgyleDispatcher.getInstance();
 		IProject project = ProjectReader.getProject();
 		if (project == null) {
 			MessageDialog.openInformation(
@@ -31,6 +34,8 @@ public class ArgyleController {
 			        "To run the Argyle, you need to put a \"*.agl\" file into a project.");
 			return;
 		}
+		
+		//Looking for .agl file to execute
 		try {
 			project.accept(new IResourceVisitor() {
 				
@@ -54,12 +59,19 @@ public class ArgyleController {
 			        "Error",
 			        "No file exsits here!");
 			e.printStackTrace();
+			return;
+		}
+		if(aglFile == null){
+			MessageDialog.openInformation(
+			        null,
+			        "Error",
+			        "No .agl exsits here!");
+			return;
 		}
 		ArgyleModelReader aglreader = new ArgyleModelReader(aglFile);
 		Model model = aglreader.getModel();
-		
-		model.getImports().forEach(System.out::println);
-		model.getCalc().forEach(System.out::println);
-		//dispatcher.dispatch(model);
+		model.getImports().forEach(imports->log.debug(imports.toString()));
+		model.getCalc().forEach(imports->log.debug(imports.toString()));
+		dispatcher.dispatch();
 	}
 }
