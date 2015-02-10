@@ -13,4 +13,9 @@ public class ArgyleMethodList {
 	public void ExtractThread(){
 		log.debug("Extract thread");
 	}
+	
+	@Agl
+	public void SetDetectMinSize(int asdf, String ok){
+		//scorpio.Main("cxf/", "output/", "cxf.xml", 6, 2);
+	}
 }
