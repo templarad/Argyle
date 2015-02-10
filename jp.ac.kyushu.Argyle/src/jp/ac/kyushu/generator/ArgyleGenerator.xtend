@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
 import lombok.extern.slf4j.Slf4j
-import jp.ac.kyushu.impl.ArgyleController
 
 /**
  * Generates code from your model files on save.
@@ -18,6 +17,6 @@ import jp.ac.kyushu.impl.ArgyleController
 class ArgyleGenerator implements IGenerator {
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-		ArgyleController.run();
+		
 	}
 }

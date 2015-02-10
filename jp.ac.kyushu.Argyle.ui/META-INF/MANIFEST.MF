@@ -19,8 +19,9 @@ Require-Bundle: jp.ac.kyushu.Argyle;visibility:=reexport,
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: jp.ac.kyushu.ui.quickfix,
+Export-Package: jp.ac.kyushu.ui,
  jp.ac.kyushu.ui.contentassist,
  jp.ac.kyushu.ui.contentassist.antlr,
- jp.ac.kyushu.ui.internal
+ jp.ac.kyushu.ui.internal,
+ jp.ac.kyushu.ui.quickfix
 Bundle-Activator: jp.ac.kyushu.ui.internal.ArgyleActivator
