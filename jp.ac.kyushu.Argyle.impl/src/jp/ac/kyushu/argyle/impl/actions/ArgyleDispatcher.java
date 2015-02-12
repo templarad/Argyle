@@ -87,7 +87,7 @@ public class ArgyleDispatcher {
 		
 		Method[] methods = ArgyleMethodList.class.getMethods();
 		for (Method method : methods) {
-			if (!method.getName().equals(DSL) || method.getAnnotation(Agl.class) == null){
+			if (!method.getName().equalsIgnoreCase(DSL) || method.getAnnotation(Agl.class) == null){
 				continue;
 			}
 			Class<?>[] parameters = method.getParameterTypes();

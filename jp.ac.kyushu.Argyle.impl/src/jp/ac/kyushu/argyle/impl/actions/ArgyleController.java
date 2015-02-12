@@ -11,12 +11,12 @@ import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.dialogs.MessageDialog;
 
-import jp.ac.kyushu.argyle.impl.ArgyleMethodList;
 import jp.ac.kyushu.argyle.impl.ArgyleModelReader;
 import jp.ac.kyushu.argyle.impl.basefunction.ProjectReader;
 import jp.ac.kyushu.argyle.impl.exception.NoMatchMethodException;
 import jp.ac.kyushu.argyle.impl.exception.ParameterUnmatchException;
 import lombok.extern.slf4j.Slf4j;
+import jp.ac.kyushu.argyle.Calc;
 import jp.ac.kyushu.argyle.Import;
 import jp.ac.kyushu.argyle.Model;
 
@@ -32,7 +32,6 @@ public class ArgyleController {
 		aglFile = null;
 
 		log.debug("It runs!");
-		ArgyleDispatcher dispatcher = ArgyleDispatcher.getInstance();
 		IProject project = ProjectReader.getProject();
 		if (project == null) {
 			MessageDialog.openInformation(
@@ -85,10 +84,18 @@ public class ArgyleController {
 			} catch (ParameterUnmatchException | IllegalAccessException
 					| IllegalArgumentException | InvocationTargetException
 					| NoMatchMethodException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
+//		for(Calc calc : model.getCalc()){
+//			try {
+//				ArgyleDispatcher.dispatch(calc.getImportStyle(), new ArrayList<Object>(Arrays.asList(calc.getSize(), calc.getThread(), calc.getOutputPath())));
+//			} catch (ParameterUnmatchException | IllegalAccessException
+//					| IllegalArgumentException | InvocationTargetException
+//					| NoMatchMethodException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
 	}
 }
