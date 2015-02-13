@@ -8,12 +8,66 @@ Model:
 ;
 	
 Import:
-	(ImportStyle=ID importPath =STRING ';')
+	ImportMbox|ImportGitLog
 ;
 	
 Calc:
-	
-	('SetDetectMinSize' size=INT ';')|
-	('UseThread' thread=INT ';')|
-	('Output' outputPath=STRING ';')
+	SetDetectMinSize|
+	UseThread|
+	Output|
+	CalcSocialMetrics|
+	DrawGraph|
+	ResolveMailAlias|
+	ResolveMailDeveloper|
+	RemoveMailQuote|
+	ExtractThread|
+	RemoveUselessMail
+;
+
+ImportMbox:
+	ImportStyle='ImportMbox' importPath=STRING ';'
+;
+
+ImportGitLog:
+	ImportStyle='ImportGitLog' importPath=STRING ';'
+;
+
+SetDetectMinSize:
+	dsl='SetDetectMinSize' size=INT ';'
+;
+
+UseThread:
+	dsl='UseThread' size=INT ';'
+;
+
+Output:
+	dsl='Output' path=STRING ';'
+;
+
+CalcSocialMetrics:
+	dsl='CalcSocialMetrics' ';'
+;
+
+DrawGraph:
+	dsl='DrawGraph' ';'
+;
+
+ResolveMailAlias:
+	dsl='ResolveMailAlias' ';'
+;
+
+ResolveMailDeveloper:
+	dsl='ResolveMailDeveloper' ';'
+;
+
+RemoveMailQuote:
+	dsl='RemoveMailQuote' ';'
+;
+
+ExtractThread:
+	dsl='ExtractThread' ';'
+;
+
+RemoveUselessMail:
+	dsl='RemoveUselessMail' ';'
 ;
