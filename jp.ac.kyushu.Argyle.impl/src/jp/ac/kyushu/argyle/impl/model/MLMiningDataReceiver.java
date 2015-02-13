@@ -15,6 +15,7 @@ public class MLMiningDataReceiver extends DataReceiver{
 	private boolean resolveMailDeveloper;
 	private boolean removeUselessMail;
 	private boolean extractThread;
+	private String repoDir;
 	private MLMiningDataReceiver(){
 		
 	}

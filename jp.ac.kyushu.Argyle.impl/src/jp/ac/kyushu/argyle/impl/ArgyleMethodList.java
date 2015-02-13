@@ -36,10 +36,17 @@ public class ArgyleMethodList {
 	}
 	
 	@Agl
-	public void ImportGitLog(String path){
+	public void ImportGitLog(String path){	
 		NCCFDataReceiver.getInstance().setImportFile(path);
-		
+		log.debug("Imported path is {}", path);
 	}
+	
+	@Agl
+	public void UseThread(int thread){	
+		NCCFDataReceiver.getInstance().setThreadNum(thread);
+		log.debug("Thread number is {}", thread);
+	}
+	
 	@Agl
 	public void ExtractThread(){
 		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
@@ -63,12 +70,18 @@ public class ArgyleMethodList {
 	@Agl
 	public void Output(String path){
 		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
+		NCCFDataReceiver nccf = NCCFDataReceiver.getInstance();
 		CodeCloneDetectDataReceiver ccdd = CodeCloneDetectDataReceiver.getInstance();
 		if(mlm.canOutput()){
 			mlm.output(path);
-		} else if(ccdd.canOutput()){
+		} else if (ccdd.canOutput()) {
 			ccdd.output(path);
-		} else {
+
+		} else if (nccf.canOutput()) {
+			nccf.output(path);
+
+		}
+		 else {
 			MessageDialog.openError(
 			        null,
 			        "Error",

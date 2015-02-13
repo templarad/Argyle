@@ -24,7 +24,7 @@ public class NCCFDataReceiver extends DataReceiver{
 	@Override
 	protected String[] setParameter(String path) {
 		
-		String[] para = {importFile, String.valueOf(threadNum), path};
+		String[] para = {String.valueOf(threadNum), importFile, path};
 		return para;
 	}
 
@@ -41,7 +41,7 @@ public class NCCFDataReceiver extends DataReceiver{
 
 	@Override
 	public boolean canOutput() {
-		if(!importFile.isEmpty()){
+		if(!importFile.isEmpty() && threadNum>0){
 			return true;
 		}
 		return false;

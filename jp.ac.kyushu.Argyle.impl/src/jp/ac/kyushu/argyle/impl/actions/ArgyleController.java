@@ -88,15 +88,15 @@ public class ArgyleController {
 				e.printStackTrace();
 			}
 		}
-//		for(Calc calc : model.getCalc()){
-//			try {
-//				ArgyleDispatcher.dispatch(calc.getImportStyle(), new ArrayList<Object>(Arrays.asList(calc.getSize(), calc.getThread(), calc.getOutputPath())));
-//			} catch (ParameterUnmatchException | IllegalAccessException
-//					| IllegalArgumentException | InvocationTargetException
-//					| NoMatchMethodException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
+		for(Calc calc : model.getCalc()){
+			try {
+				ArgyleDispatcher.dispatch(calc.getDsl(), new ArrayList<Object>(Arrays.asList(calc.getSize(), calc.getPath())));
+			} catch (ParameterUnmatchException | IllegalAccessException
+					| IllegalArgumentException | InvocationTargetException
+					| NoMatchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 }
