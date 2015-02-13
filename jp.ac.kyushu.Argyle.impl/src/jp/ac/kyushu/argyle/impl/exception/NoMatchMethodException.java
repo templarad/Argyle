@@ -8,7 +8,7 @@ public class NoMatchMethodException extends DispatchException{
 	private static final long serialVersionUID = 1L;
 
 	public NoMatchMethodException(String str) {
-		super("Can find method \""+ str + "\", you need to define it in the MethodList class.");
+		super("Can not find method \""+ str + "\", you need to define it in the MethodList class.");
 	}
 
 }
