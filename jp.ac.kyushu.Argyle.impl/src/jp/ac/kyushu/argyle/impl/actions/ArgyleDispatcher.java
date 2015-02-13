@@ -72,11 +72,11 @@ public class ArgyleDispatcher {
 	 * Method invocation using DSL name and parameters list.
 	 * @param DSL
 	 * @param paraList
-	 * @throws ParameterUnmatchException caused by that if the parameters defined in <b>DSL</b> do not match those are define with @Alg.
+	 * @throws ParameterUnmatchException Caused by that if the parameters defined in <b>DSL</b> do not match those are define with @Alg.
 	 * @throws IllegalAccessException Caused by method.invoke()
 	 * @throws IllegalArgumentException Caused by method.invoke()
 	 * @throws InvocationTargetException Caused by method.invoke()
-	 * @throws NoMatchMethodException 
+	 * @throws NoMatchMethodException Caused by no method matched to the DSL.
 	 */
 	public static void dispatch(String DSL, List<Object> paraList) 
 			throws ParameterUnmatchException, 

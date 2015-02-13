@@ -4,7 +4,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 
 import jp.ac.kyushu.argyle.impl.model.CodeCloneDetectDataReceiver;
 import jp.ac.kyushu.argyle.impl.model.MLMiningDataReceiver;
-import yoshikihigo.tinypdg.scorpio.Scorpio;
+import jp.ac.kyushu.argyle.impl.model.NCCFDataReceiver;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -30,10 +30,15 @@ public class ArgyleMethodList {
 	}
 	@Agl
 	public void ImportMbox (String path){
-		MLMiningDataReceiver.getInstance().setImportPath(path);
+		MLMiningDataReceiver.getInstance().setImportFile(path);
 		log.debug("Imported path is {}", path);
 	}
 	
+	@Agl
+	public void ImportGitLog(String path){
+		NCCFDataReceiver.getInstance().setImportFile(path);
+		
+	}
 	@Agl
 	public void ExtractThread(){
 		log.debug("Extract thread");
@@ -42,24 +47,24 @@ public class ArgyleMethodList {
 	@Agl
 	public void SetDetectMinSize(int size){
 		CodeCloneDetectDataReceiver ccddR = CodeCloneDetectDataReceiver.getInstance();
-		ccddR.getParameterList().add("-s");
-		ccddR.getParameterList().add(String.valueOf(size));
+		ccddR.setDetectMinSize(size);
+
 	}
 	
 	@Agl
 	public void RemoveMailQuote(){
 		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
-		mlm.getParameterList().add("-s");
-		mlm.canOutput = true;
+		mlm.setRemoveMailQuote(true);
+
 	}
 	
 	@Agl
 	public void Output(String path){
 		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
 		CodeCloneDetectDataReceiver ccdd = CodeCloneDetectDataReceiver.getInstance();
-		if(mlm.canOutput){
+		if(mlm.canOutput()){
 			mlm.output(path);
-		} else if(ccdd.canOutput){
+		} else if(ccdd.canOutput()){
 			ccdd.output(path);
 		} else {
 			MessageDialog.openInformation(

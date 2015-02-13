@@ -8,7 +8,8 @@ Model:
 ;
 	
 Import:
-	(ImportStyle=ID importPath =STRING ';')
+	ImportMbox |ImportGitRepo
+	
 ;
 	
 Calc:
@@ -16,4 +17,12 @@ Calc:
 	('SetDetectMinSize' size=INT ';')|
 	('UseThread' thread=INT ';')|
 	('Output' outputPath=STRING ';')
+;
+ImportMbox:
+	importStyle='ImportMbox' importPath =STRING ';'
+;
+
+
+ImportGitRepo:
+	importStyle='ImportGitRepo' importPath =STRING ';'
 ;
