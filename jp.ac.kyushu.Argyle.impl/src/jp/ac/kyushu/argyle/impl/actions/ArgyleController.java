@@ -1,6 +1,9 @@
 package jp.ac.kyushu.argyle.impl.actions;
 
-import java.util.List;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -10,7 +13,10 @@ import org.eclipse.jface.dialogs.MessageDialog;
 
 import jp.ac.kyushu.argyle.impl.ArgyleModelReader;
 import jp.ac.kyushu.argyle.impl.basefunction.ProjectReader;
+import jp.ac.kyushu.argyle.impl.exception.NoMatchMethodException;
+import jp.ac.kyushu.argyle.impl.exception.ParameterUnmatchException;
 import lombok.extern.slf4j.Slf4j;
+import jp.ac.kyushu.argyle.Calc;
 import jp.ac.kyushu.argyle.Import;
 import jp.ac.kyushu.argyle.Model;
 
@@ -24,11 +30,11 @@ public class ArgyleController {
 	
 	public static void run(){
 		aglFile = null;
+
 		log.debug("It runs!");
-		ArgyleDispatcher dispatcher = ArgyleDispatcher.getInstance();
 		IProject project = ProjectReader.getProject();
 		if (project == null) {
-			MessageDialog.openInformation(
+			MessageDialog.openError(
 			        null,
 			        "Error",
 			        "To run the Argyle, you need to put a \"*.agl\" file into a project.");
@@ -54,7 +60,7 @@ public class ArgyleController {
 				}
 			});
 		} catch (CoreException e) {
-			MessageDialog.openInformation(
+			MessageDialog.openError(
 			        null,
 			        "Error",
 			        "No file exsits here!");
@@ -62,7 +68,7 @@ public class ArgyleController {
 			return;
 		}
 		if(aglFile == null){
-			MessageDialog.openInformation(
+			MessageDialog.openError(
 			        null,
 			        "Error",
 			        "No .agl exsits here!");
@@ -70,8 +76,27 @@ public class ArgyleController {
 		}
 		ArgyleModelReader aglreader = new ArgyleModelReader(aglFile);
 		Model model = aglreader.getModel();
-		model.getImports().forEach(imports->log.debug(imports.toString()));
-		model.getCalc().forEach(imports->log.debug(imports.toString()));
-		dispatcher.dispatch();
+//		model.getImports().forEach(imports->log.debug(imports.toString()));
+//		model.getCalc().forEach(imports->log.debug(imports.toString()));
+//		log.debug(model.getImports().get(0).getImportStyle());
+		for(Import importfile : model.getImports()){
+			try {
+				ArgyleDispatcher.dispatch(importfile.getImportStyle(), new ArrayList<Object>(Arrays.asList(importfile.getImportPath())));
+			} catch (ParameterUnmatchException | IllegalAccessException
+					| IllegalArgumentException | InvocationTargetException
+					| NoMatchMethodException e) {
+				e.printStackTrace();
+			}
+		}
+//		for(Calc calc : model.getCalc()){
+//			try {
+//				ArgyleDispatcher.dispatch(calc.getImportStyle(), new ArrayList<Object>(Arrays.asList(calc.getSize(), calc.getThread(), calc.getOutputPath())));
+//			} catch (ParameterUnmatchException | IllegalAccessException
+//					| IllegalArgumentException | InvocationTargetException
+//					| NoMatchMethodException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
 	}
 }

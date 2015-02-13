@@ -37,6 +37,7 @@ Export-Package: ch.qos.logback.classic,
  jp.ac.kyushu.serializer,
  jp.ac.kyushu.services,
  jp.ac.kyushu.validation,
+ lombok,
  lombok.extern.slf4j,
  org.slf4j
 Bundle-ClassPath: .,
