@@ -30,7 +30,8 @@ public class ArgyleMethodList {
 	}
 	@Agl
 	public void ImportMbox (String path){
-		MLMiningDataReceiver.getInstance().setImportFile(path);
+		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
+		mlm.setImportFile(path);
 		log.debug("Imported path is {}", path);
 	}
 	
@@ -41,7 +42,8 @@ public class ArgyleMethodList {
 	}
 	@Agl
 	public void ExtractThread(){
-		log.debug("Extract thread");
+		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
+		mlm.setExtractThread(true);
 	}
 	
 	@Agl
@@ -67,7 +69,7 @@ public class ArgyleMethodList {
 		} else if(ccdd.canOutput()){
 			ccdd.output(path);
 		} else {
-			MessageDialog.openInformation(
+			MessageDialog.openError(
 			        null,
 			        "Error",
 			        "No data can be output!");

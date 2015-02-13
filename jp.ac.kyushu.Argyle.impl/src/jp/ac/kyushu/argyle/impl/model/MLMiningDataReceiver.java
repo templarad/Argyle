@@ -10,10 +10,11 @@ public class MLMiningDataReceiver extends DataReceiver{
 
 	private String importFile;
 	private boolean removeMailQuote;
-	private boolean CalcSocialMetrics;
-	private boolean ResolveMailAlias;
-	private boolean ResolveMailDeveloper;
-	private boolean RemoveUselessMail;
+	private boolean calcSocialMetrics;
+	private boolean resolveMailAlias;
+	private boolean resolveMailDeveloper;
+	private boolean removeUselessMail;
+	private boolean extractThread;
 	private MLMiningDataReceiver(){
 		
 	}
@@ -42,8 +43,11 @@ public class MLMiningDataReceiver extends DataReceiver{
 
 	@Override
 	public boolean canOutput() {
+		if(importFile == null){
+			return false;
+		}
 		if(!importFile.isEmpty() &&
-				(removeMailQuote||CalcSocialMetrics||ResolveMailAlias || ResolveMailDeveloper || RemoveUselessMail)){
+				(removeMailQuote||calcSocialMetrics||resolveMailAlias || resolveMailDeveloper || removeUselessMail)){
 			return true;
 		}
 		return false;

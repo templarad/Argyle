@@ -34,7 +34,7 @@ public class ArgyleController {
 		log.debug("It runs!");
 		IProject project = ProjectReader.getProject();
 		if (project == null) {
-			MessageDialog.openInformation(
+			MessageDialog.openError(
 			        null,
 			        "Error",
 			        "To run the Argyle, you need to put a \"*.agl\" file into a project.");
@@ -60,7 +60,7 @@ public class ArgyleController {
 				}
 			});
 		} catch (CoreException e) {
-			MessageDialog.openInformation(
+			MessageDialog.openError(
 			        null,
 			        "Error",
 			        "No file exsits here!");
@@ -68,7 +68,7 @@ public class ArgyleController {
 			return;
 		}
 		if(aglFile == null){
-			MessageDialog.openInformation(
+			MessageDialog.openError(
 			        null,
 			        "Error",
 			        "No .agl exsits here!");
@@ -76,18 +76,18 @@ public class ArgyleController {
 		}
 		ArgyleModelReader aglreader = new ArgyleModelReader(aglFile);
 		Model model = aglreader.getModel();
-		model.getImports().forEach(imports->log.debug(imports.toString()));
-		model.getCalc().forEach(imports->log.debug(imports.toString()));
-		log.debug(model.getImports().get(0).getImportStyle());
-//		for(Import importfile : model.getImports()){
-//			try {
-//				ArgyleDispatcher.dispatch(importfile.getClass().getName(), new ArrayList<Object>(Arrays.asList(importfile.getImportPath())));
-//			} catch (ParameterUnmatchException | IllegalAccessException
-//					| IllegalArgumentException | InvocationTargetException
-//					| NoMatchMethodException e) {
-//				e.printStackTrace();
-//			}
-//		}
+//		model.getImports().forEach(imports->log.debug(imports.toString()));
+//		model.getCalc().forEach(imports->log.debug(imports.toString()));
+//		log.debug(model.getImports().get(0).getImportStyle());
+		for(Import importfile : model.getImports()){
+			try {
+				ArgyleDispatcher.dispatch(importfile.getImportStyle(), new ArrayList<Object>(Arrays.asList(importfile.getImportPath())));
+			} catch (ParameterUnmatchException | IllegalAccessException
+					| IllegalArgumentException | InvocationTargetException
+					| NoMatchMethodException e) {
+				e.printStackTrace();
+			}
+		}
 //		for(Calc calc : model.getCalc()){
 //			try {
 //				ArgyleDispatcher.dispatch(calc.getImportStyle(), new ArrayList<Object>(Arrays.asList(calc.getSize(), calc.getThread(), calc.getOutputPath())));
