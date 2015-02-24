@@ -1,8 +1,13 @@
 package jp.ac.kyushu.argyle.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 
 import jp.ac.kyushu.argyle.impl.model.CodeCloneDetectDataReceiver;
+import jp.ac.kyushu.argyle.impl.model.DataReceiver;
 import jp.ac.kyushu.argyle.impl.model.MLMiningDataReceiver;
 import jp.ac.kyushu.argyle.impl.model.NCCFDataReceiver;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +39,9 @@ public class ArgyleMethodList {
 		mlm.setImportFile(path);
 		log.debug("Imported path is {}", path);
 	}
-	
+//=====================================
+//	NCCF
+//=====================================	
 	@Agl
 	public void ImportGitLog(String path){	
 		NCCFDataReceiver.getInstance().setImportFile(path);
@@ -61,31 +68,46 @@ public class ArgyleMethodList {
 	}
 	
 	@Agl
-	public void RemoveMailQuote(){
-		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
-		mlm.setRemoveMailQuote(true);
-
-	}
-	
-	@Agl
-	public void Output(String path){
-		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
+	public void DefectPredict(){
 		NCCFDataReceiver nccf = NCCFDataReceiver.getInstance();
-		CodeCloneDetectDataReceiver ccdd = CodeCloneDetectDataReceiver.getInstance();
-		if(mlm.canOutput()){
-			mlm.output(path);
-		} else if (ccdd.canOutput()) {
-			ccdd.output(path);
-
-		} else if (nccf.canOutput()) {
-			nccf.output(path);
-
-		}
-		 else {
+		if (nccf.canOutput()) {
+			nccf.execute();
+		}else {
 			MessageDialog.openError(
 			        null,
 			        "Error",
 			        "No data can be output!");
+		}
+	}
+//=====================================
+//		MLMining
+//=====================================
+	@Agl
+	public void RemoveMailQuote(){
+		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
+		mlm.setRemoveMailQuote(true);
+		mlm.execute();
+
+	}
+	
+	public void ResolveMailDeveloper(){
+		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
+		mlm.setResolveMailDeveloper(true);
+		mlm.execute();
+	}
+	
+	@Agl
+	public void Output(String path){
+		List<DataReceiver> dataRecList = new ArrayList<DataReceiver>();
+		dataRecList.add(MLMiningDataReceiver.getInstance());
+		dataRecList.add(NCCFDataReceiver.getInstance());
+		dataRecList.add(CodeCloneDetectDataReceiver.getInstance());
+		
+		Iterator<DataReceiver> dataRecIter = dataRecList.iterator();
+		while(dataRecIter.hasNext()){
+			DataReceiver dataRec = dataRecIter.next();
+			dataRec.setPath(path);
+			log.debug("{} path setting: {}", dataRec.getClass().getSimpleName(), path);
 		}
 		
 	}
