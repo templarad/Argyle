@@ -68,25 +68,51 @@ public class ArgyleMethodList {
 	}
 	
 	@Agl
+	public void DefectPredict(){
+		NCCFDataReceiver nccf = NCCFDataReceiver.getInstance();
+		nccf.setDefectPredict(true);
+		log.debug("DefectPredict is exsting");
+	}
+	
+	
+	
+	@Agl
 	public void Output(String path){
+//		NCCFDataReceiver.getInstance().setOutputFile(path);
+	
 		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
 		NCCFDataReceiver nccf = NCCFDataReceiver.getInstance();
-		CodeCloneDetectDataReceiver ccdd = CodeCloneDetectDataReceiver.getInstance();
-		if(mlm.canOutput()){
-			mlm.output(path);
-		} else if (ccdd.canOutput()) {
-			ccdd.output(path);
-
-		} else if (nccf.canOutput()) {
+		CodeCloneDetectDataReceiver ccdd = CodeCloneDetectDataReceiver.getInstance();					
+//		if(mlm.canOutput()){
+//			mlm.output(path);
+//		} else if (ccdd.canOutput()) {
+//			ccdd.output(path);
+//		} else if (nccf.canOutput()) {
+//			nccf.output(path);
+		if (nccf.canOutput()) {
 			nccf.output(path);
-
 		}
 		 else {
 			MessageDialog.openError(
 			        null,
 			        "Error",
 			        "No data can be output!");
-		}
+		}	
+		
+		
+			log.debug("outputted path is {}", path);
 		
 	}
+	
+//	@Agl
+//	public void DefectPredict(String string){
+////		NCCFDataReceiver nccf = NCCFDataReceiver.getInstance();
+////		path = Output(path);
+////		if (nccf.canOutput()) {
+////			nccf.output(path);
+////		}
+//		NCCFDataReceiver.getInstance().setDefectPredict(string);
+//		log.debug("DefectPredict is {}", string);
+//	}
+	
 }
