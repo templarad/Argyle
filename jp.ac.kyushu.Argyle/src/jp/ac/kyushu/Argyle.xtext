@@ -15,7 +15,7 @@ Import:
 ;
 	
 Calc:
-	
+	(dsl='DefectPredict' ';')|
 	(dsl='SetDetectMinSize' size=INT ';')|
 	(dsl='UseThread' size=INT ';')|
 	(dsl='Output' path=STRING ';')|
