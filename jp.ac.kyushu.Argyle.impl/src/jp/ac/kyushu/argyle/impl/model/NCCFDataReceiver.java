@@ -1,8 +1,9 @@
 package jp.ac.kyushu.argyle.impl.model;
 
-import journal.nccf.thread.exe.Execute;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import journal.nccf.thread.exe.Execute;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
@@ -36,7 +37,8 @@ public class NCCFDataReceiver extends DataReceiver{
 	@Override
 	public void initialize() {
 		// TODO Auto-generated method stub
-		
+		importFile="";
+		threadNum = 0;
 	}
 
 	@Override

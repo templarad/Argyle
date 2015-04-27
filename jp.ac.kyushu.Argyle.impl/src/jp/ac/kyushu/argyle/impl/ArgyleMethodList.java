@@ -40,7 +40,7 @@ public class ArgyleMethodList {
 		log.debug("Imported path is {}", path);
 	}
 //=====================================
-//	NCCF
+//	NCCF and scorpio
 //=====================================	
 	@Agl
 	public void ImportGitLog(String path){	
@@ -49,9 +49,21 @@ public class ArgyleMethodList {
 	}
 	
 	@Agl
+	public void ImportCodeDir(String path){	
+		CodeCloneDetectDataReceiver.getInstance().setImportDir(path);
+		log.debug("Imported path is {}", path);
+	}
+	
+	@Agl
 	public void UseThread(int thread){	
 		NCCFDataReceiver.getInstance().setThreadNum(thread);
-		log.debug("Thread number is {}", thread);
+		log.debug("useThread number is {}", thread);
+	}
+	
+	@Agl
+	public void SetThread(int thread){	
+		CodeCloneDetectDataReceiver.getInstance().setThreadNum(thread);
+		log.debug("setThread number is {}", thread);
 	}
 	
 	@Agl
@@ -64,7 +76,21 @@ public class ArgyleMethodList {
 	public void SetDetectMinSize(int size){
 		CodeCloneDetectDataReceiver ccddR = CodeCloneDetectDataReceiver.getInstance();
 		ccddR.setDetectMinSize(size);
+		log.debug("DetectMinSize is {}", size);
 
+	}
+	
+	@Agl
+	public void DetectCodeClone(){
+		CodeCloneDetectDataReceiver ccddR = CodeCloneDetectDataReceiver.getInstance();
+		if (ccddR.canOutput()) {
+			ccddR.execute();
+		}else {
+			MessageDialog.openError(
+			        null,
+			        "Error",
+			        "No data can be output!");
+		}
 	}
 	
 	@Agl
@@ -90,6 +116,7 @@ public class ArgyleMethodList {
 
 	}
 	
+	@Agl
 	public void ResolveMailDeveloper(){
 		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
 		mlm.setResolveMailDeveloper(true);
