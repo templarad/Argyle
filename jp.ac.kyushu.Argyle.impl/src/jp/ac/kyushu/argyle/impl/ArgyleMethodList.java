@@ -68,6 +68,12 @@ public class ArgyleMethodList {
 	}
 	
 	@Agl
+	public void DefectPredict(){
+		NCCFDataReceiver nccf = NCCFDataReceiver.getInstance();
+		nccf.setDefectPredict(true);
+	}
+	
+	@Agl
 	public void Output(String path){
 		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
 		NCCFDataReceiver nccf = NCCFDataReceiver.getInstance();
@@ -89,4 +95,17 @@ public class ArgyleMethodList {
 		}
 		
 	}
+	
+//	@Agl
+//	public void Output(String path){
+//		NCCFDataReceiver nccf = NCCFDataReceiver.getInstance();	
+//		if (nccf.canOutput()) {
+//			nccf.output(path);
+//			MessageDialog.openInformation(
+//			        null,
+//			        "info",
+//			        "output file is created.");
+//		}
+//	}
+	
 }

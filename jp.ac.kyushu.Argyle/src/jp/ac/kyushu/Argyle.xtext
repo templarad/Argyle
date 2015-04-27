@@ -15,7 +15,7 @@ Import:
 ;
 	
 Calc:
-	
+	(dsl='DefectPredict' ';')|  //run NCCF
 	(dsl='SetDetectMinSize' size=INT ';')|
 	(dsl='UseThread' size=INT ';')|
 	(dsl='Output' path=STRING ';')|

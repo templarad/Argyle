@@ -45,7 +45,7 @@ public class ArgyleController {
 		try {
 			project.accept(new IResourceVisitor() {
 				
-				@Override
+				@Override 
 				public boolean visit(IResource resource) throws CoreException {
 					String ext = resource.getFileExtension();
 					if(ext == null) return true;
