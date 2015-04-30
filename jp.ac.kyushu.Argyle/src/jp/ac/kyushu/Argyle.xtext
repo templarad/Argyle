@@ -56,7 +56,7 @@ Calc:
 //	anko (Git commit‚©‚çŒ‡Š×—\‘ªƒc[ƒ‹)
 //=====================================	
 	
-	(dsl='CHangeTrainModel' ';')|	
+	(dsl='ChangeTrainModel' ';')|	
 	(dsl='UseSimpleMetrics' ';')
 	
 ;

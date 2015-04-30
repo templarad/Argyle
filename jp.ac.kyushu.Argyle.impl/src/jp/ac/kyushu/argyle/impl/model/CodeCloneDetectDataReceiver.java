@@ -50,16 +50,16 @@ public class CodeCloneDetectDataReceiver extends DataReceiver{
 	}
 
 	@Override
-	protected void invoke(String[] parameters) {
-		Scorpio.main(parameters);
-	}
-
-	@Override
 	public void initialize() {
 		importDir="";
 		detectMinSize = 0;
 		threadNum = 0;
 		
+	}
+	
+	@Override
+	protected void invoke(String[] parameters) {
+		Scorpio.main(parameters);
 	}
 
 	@Override
