@@ -1,7 +1,15 @@
 package jp.ac.kyushu.argyle.impl.model;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import controller.Coli;
+import org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
@@ -11,6 +19,7 @@ public class MLMiningDataReceiver extends DataReceiver{
 	private String importFile;
 	private boolean removeMailQuote;
 	private boolean calcSocialMetrics;
+	private boolean drawGraph;
 	private boolean resolveMailAlias;
 	private boolean resolveMailDeveloper;
 	private boolean removeUselessMail;
@@ -26,14 +35,32 @@ public class MLMiningDataReceiver extends DataReceiver{
 	
 	@Override
 	protected String[] setParameter(String path) {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> parameterList = new ArrayList<String>();
+		if(!importFile.isEmpty()){
+			parameterList.add("-f");
+			parameterList.add(importFile);
+		}
+		
+		parameterList.add("-o");
+		parameterList.add(path);
+				
+		if(!removeMailQuote){
+			parameterList.add("-s");
+		}
+		
+		return parameterList.toArray(new String[0]);
 	}
-
+	
 	@Override
 	protected void invoke(String[] parameters) {
-		// TODO Auto-generated method stub
-		
+		try {
+			JarRsrcLoader.main(parameters);
+		} catch (ClassNotFoundException | IllegalArgumentException
+				| IllegalAccessException | InvocationTargetException
+				| SecurityException | NoSuchMethodException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override

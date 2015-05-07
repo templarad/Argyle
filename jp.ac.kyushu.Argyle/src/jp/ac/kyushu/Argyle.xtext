@@ -10,21 +10,53 @@ Model:
 Import:	
 	
 	(ImportStyle='ImportMbox' importPath=STRING ';')|
-	(ImportStyle='ImportGitLog' importPath=STRING ';')
-	
+	(ImportStyle='ImportGitLog' importPath=STRING ';')|
+	(ImportStyle='ImportCodeDir' importPath=STRING ';')|
+	(ImportStyle='ImportAnotherCodeDir' importPath=STRING ';')|
+	(ImportStyle='ChangeTrainData' importPath=STRING ';')|
+	(ImportStyle='UseJoinData' importPath=STRING ';')
 ;
 	
 Calc:
-	(dsl='DefectPredict' ';')|
-	(dsl='SetDetectMinSize' size=INT ';')|
-	(dsl='UseThread' size=INT ';')|
-	(dsl='Output' path=STRING ';')|
+//=====================================
+//	public
+//=====================================
+	
+	(dsl='Output' path=STRING ';')|	
+
+//=====================================
+//	Coli (開発メーリングリストマイニングの前処理ツール)
+//=====================================	
+		
 	(dsl='CalcSocialMetrics' ';')|
-	(dsl='DrawGraph' ';')|
+	(dsl='DrawGraph' ';')|	
 	(dsl='ResolveMailAlias' ';')|
 	(dsl='ResolveMailDeveloper' ';')|
 	(dsl='RemoveMailQuote' ';')|
 	(dsl='ExtractThread' ';')|
-	(dsl='RemoveUselessMail' ';')
+	(dsl='RemoveUselessMail' ';')|	
+	(dsl='GetMailQuote' ';')|	
+	
+//=====================================
+//	scorpio (Code clone検出)
+//=====================================	
+
+	(dsl='SetDetectMinSize' size=INT ';')|
+	(dsl='SetThread' size=INT ';')|
+	(dsl='DetectCodeClone' ';')|
+	
+//=====================================
+//	NCCF (不具合モジュール予測)
+//=====================================	
+
+	(dsl='UseThread' size=INT ';')|
+	(dsl='DefectPredict' ';')|
+	
+//=====================================
+//	anko (Git commitから欠陥予測ツール)
+//=====================================	
+	
+	(dsl='ChangeTrainModel' ';')|	
+	(dsl='UseSimpleMetrics' ';')
 	
 ;

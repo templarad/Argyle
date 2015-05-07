@@ -10,6 +10,7 @@ import jp.ac.kyushu.argyle.impl.model.CodeCloneDetectDataReceiver;
 import jp.ac.kyushu.argyle.impl.model.DataReceiver;
 import jp.ac.kyushu.argyle.impl.model.MLMiningDataReceiver;
 import jp.ac.kyushu.argyle.impl.model.NCCFDataReceiver;
+import jp.ac.kyushu.argyle.impl.model.AnkoDataReceiver;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -32,16 +33,104 @@ public class ArgyleMethodList {
 	
 	public static ArgyleMethodList getInstance(){
 		return methodList;
-	}
+	}				
+
+//=====================================
+//	Coli (開発メーリングリストマイニングの前処理ツール)
+//=====================================
 	@Agl
 	public void ImportMbox (String path){
-		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
-		mlm.setImportFile(path);
+		MLMiningDataReceiver.getInstance().setImportFile(path);
 		log.debug("Imported path is {}", path);
 	}
+	
+	@Agl
+	public void CalSocialMetrics(){
+		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
+		mlm.setCalcSocialMetrics(true);
+		mlm.execute();
+		log.debug("CalSocialMetrics is {}");
+	}
+	
+	@Agl
+	public void DrawGraph(){
+		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
+		mlm.setDrawGraph(true);
+		mlm.execute();
+		log.debug("DrawGraph is {}");
+	}
+	
+	@Agl
+	public void ResolveMailAlias(){
+		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
+		mlm.setResolveMailAlias(true);
+		mlm.execute();
+		log.debug("ResolveMailAlias is {}");
+	}
+	
+	@Agl
+	public void ResolveMailDeveloper(){
+		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
+		mlm.setResolveMailDeveloper(true);
+		mlm.execute();
+		log.debug("ResolveMailDeveloper is {}");
+	}
+	
+	@Agl
+	public void RemoveMailQuote(){
+		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
+		mlm.setRemoveMailQuote(true);
+		mlm.execute();
+		log.debug("RemoveMailQuote is {}");
+	}
+	
+	@Agl
+	public void ExtractThread(){
+		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
+		mlm.setExtractThread(true);
+		log.debug("ExtractThread is {}");
+	}	
+	
 //=====================================
-//	NCCF
+//	scorpio
 //=====================================	
+		
+	@Agl
+	public void ImportCodeDir(String path){	
+		CodeCloneDetectDataReceiver.getInstance().setImportDir(path);
+		log.debug("Imported path is {}", path);
+	}
+	
+	@Agl
+	public void SetThread(int thread){	
+		CodeCloneDetectDataReceiver.getInstance().setThreadNum(thread);
+		log.debug("setThread number is {}", thread);
+	}
+	
+	@Agl
+	public void SetDetectMinSize(int size){
+		CodeCloneDetectDataReceiver ccddR = CodeCloneDetectDataReceiver.getInstance();
+		ccddR.setDetectMinSize(size);
+		log.debug("DetectMinSize is {}", size);
+	}
+	
+	@Agl
+	public void DetectCodeClone(){
+		CodeCloneDetectDataReceiver ccddR = CodeCloneDetectDataReceiver.getInstance();
+		if (ccddR.canOutput()) {
+			ccddR.execute();
+		}else {
+			MessageDialog.openError(
+			        null,
+			        "Error",
+			        "No data can be output!");
+		}
+	}
+	
+//=====================================
+//	NCCF 
+//=====================================	
+	
 	@Agl
 	public void ImportGitLog(String path){	
 		NCCFDataReceiver.getInstance().setImportFile(path);
@@ -51,20 +140,7 @@ public class ArgyleMethodList {
 	@Agl
 	public void UseThread(int thread){	
 		NCCFDataReceiver.getInstance().setThreadNum(thread);
-		log.debug("Thread number is {}", thread);
-	}
-	
-	@Agl
-	public void ExtractThread(){
-		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
-		mlm.setExtractThread(true);
-	}
-	
-	@Agl
-	public void SetDetectMinSize(int size){
-		CodeCloneDetectDataReceiver ccddR = CodeCloneDetectDataReceiver.getInstance();
-		ccddR.setDetectMinSize(size);
-
+		log.debug("useThread number is {}", thread);
 	}
 	
 	@Agl
@@ -79,22 +155,42 @@ public class ArgyleMethodList {
 			        "No data can be output!");
 		}
 	}
+	
 //=====================================
-//		MLMining
-//=====================================
+//	anko
+//=====================================	
+	
 	@Agl
-	public void RemoveMailQuote(){
-		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
-		mlm.setRemoveMailQuote(true);
-		mlm.execute();
-
+	public void ChangeTrainData(String path){	
+		AnkoDataReceiver anko = AnkoDataReceiver.getInstance();
+		anko.setChangeTrainData(path);
+		log.debug("ChangeTrainModel is {}", path);
 	}
 	
-	public void ResolveMailDeveloper(){
-		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
-		mlm.setResolveMailDeveloper(true);
-		mlm.execute();
+	@Agl
+	public void UseJoinData(String path){	
+		AnkoDataReceiver anko = AnkoDataReceiver.getInstance();
+		anko.setUseJoinData(path);
+		log.debug("UseJoinData is {}", path);
 	}
+	
+	@Agl
+	public void ChangeTrainModel(){	
+		AnkoDataReceiver anko = AnkoDataReceiver.getInstance();
+		anko.setChangeTrainModel(true);
+		log.debug("ChangeTrainModel is {}");
+	}
+
+	@Agl
+	public void UseSimpleMetrics(){	
+		AnkoDataReceiver anko = AnkoDataReceiver.getInstance();
+		anko.setUseSimpleMetrics(true);
+		log.debug("UseSimpleMetrics is {}");
+	}
+	
+//=====================================
+//	public output
+//=====================================	
 	
 	@Agl
 	public void Output(String path){
@@ -109,6 +205,7 @@ public class ArgyleMethodList {
 			dataRec.setPath(path);
 			log.debug("{} path setting: {}", dataRec.getClass().getSimpleName(), path);
 		}
-		
 	}
 }
+		
+	
