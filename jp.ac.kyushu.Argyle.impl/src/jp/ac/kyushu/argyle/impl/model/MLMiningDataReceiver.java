@@ -8,8 +8,9 @@ import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import controller.Coli;
+import org.apache.commons.cli.ParseException;
 import org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader;
+import controller.Coli;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
@@ -51,17 +52,27 @@ public class MLMiningDataReceiver extends DataReceiver{
 		return parameterList.toArray(new String[0]);
 	}
 	
+//	@Override
+//	protected void invoke(String[] parameters) {
+//		try {
+//			JarRsrcLoader.main(parameters);
+//		} catch (ClassNotFoundException | IllegalArgumentException
+//				| IllegalAccessException | InvocationTargetException
+//				| SecurityException | NoSuchMethodException | IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
+
 	@Override
 	protected void invoke(String[] parameters) {
 		try {
-			JarRsrcLoader.main(parameters);
-		} catch (ClassNotFoundException | IllegalArgumentException
-				| IllegalAccessException | InvocationTargetException
-				| SecurityException | NoSuchMethodException | IOException e) {
+			Coli.main(parameters);
+		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+		}
 
 	@Override
 	public void initialize() {

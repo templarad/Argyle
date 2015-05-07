@@ -49,7 +49,7 @@ public class ArgyleMethodList {
 		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
 		mlm.setCalcSocialMetrics(true);
 		mlm.execute();
-		log.debug("CalSocialMetrics is {}");
+		log.debug("CalSocialMetrics is ture");
 	}
 	
 	@Agl
@@ -57,7 +57,7 @@ public class ArgyleMethodList {
 		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
 		mlm.setDrawGraph(true);
 		mlm.execute();
-		log.debug("DrawGraph is {}");
+		log.debug("DrawGraph is ture");
 	}
 	
 	@Agl
@@ -65,7 +65,7 @@ public class ArgyleMethodList {
 		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
 		mlm.setResolveMailAlias(true);
 		mlm.execute();
-		log.debug("ResolveMailAlias is {}");
+		log.debug("ResolveMailAlias is ture");
 	}
 	
 	@Agl
@@ -73,7 +73,7 @@ public class ArgyleMethodList {
 		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
 		mlm.setResolveMailDeveloper(true);
 		mlm.execute();
-		log.debug("ResolveMailDeveloper is {}");
+		log.debug("ResolveMailDeveloper is ture");
 	}
 	
 	@Agl
@@ -81,14 +81,14 @@ public class ArgyleMethodList {
 		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
 		mlm.setRemoveMailQuote(true);
 		mlm.execute();
-		log.debug("RemoveMailQuote is {}");
+		log.debug("RemoveMailQuote is ture");
 	}
 	
 	@Agl
 	public void ExtractThread(){
 		MLMiningDataReceiver mlm = MLMiningDataReceiver.getInstance();
 		mlm.setExtractThread(true);
-		log.debug("ExtractThread is {}");
+		log.debug("ExtractThread is ture");
 	}	
 	
 //=====================================
@@ -178,14 +178,14 @@ public class ArgyleMethodList {
 	public void ChangeTrainModel(){	
 		AnkoDataReceiver anko = AnkoDataReceiver.getInstance();
 		anko.setChangeTrainModel(true);
-		log.debug("ChangeTrainModel is {}");
+		log.debug("ChangeTrainModel is ture");
 	}
 
 	@Agl
 	public void UseSimpleMetrics(){	
 		AnkoDataReceiver anko = AnkoDataReceiver.getInstance();
 		anko.setUseSimpleMetrics(true);
-		log.debug("UseSimpleMetrics is {}");
+		log.debug("UseSimpleMetrics is ture");
 	}
 	
 //=====================================

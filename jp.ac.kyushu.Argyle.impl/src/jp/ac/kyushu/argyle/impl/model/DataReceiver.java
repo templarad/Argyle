@@ -10,9 +10,13 @@ import org.eclipse.jface.dialogs.MessageDialog;
 public abstract class DataReceiver {
 
 	private String path;
+	
+	boolean bool = false;
+	
 	public void execute(){
 		
 		File file = new File(path);
+		
 		if(!file.exists()){
 			try {
 				file.createNewFile();
