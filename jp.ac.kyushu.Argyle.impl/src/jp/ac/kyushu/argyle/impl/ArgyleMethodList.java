@@ -132,7 +132,7 @@ public class ArgyleMethodList {
 //=====================================	
 	
 	@Agl
-	public void ImportGitLog(String path){	
+	public void ImportGitLog (String path){	
 		NCCFDataReceiver.getInstance().setImportFile(path);
 		log.debug("Imported path is {}", path);
 	}
