@@ -51,7 +51,7 @@ public class CodeCloneDetectDataReceiver extends DataReceiver{
 
 	@Override
 	public void initialize() {
-		importDir="";
+		importDir = "";
 		detectMinSize = 0;
 		threadNum = 0;
 		
@@ -59,19 +59,24 @@ public class CodeCloneDetectDataReceiver extends DataReceiver{
 	
 	@Override
 	protected void invoke(String[] parameters) {
-//		for(int i=0;i<parameters.length;i++)
-//			System.out.println(parameters[i]);
-		parameters = new String[8];
-		parameters[0] = "-d";
-		parameters[1] = "C:\\Anko\\ArgyleMethodList.java";		
-		parameters[2] = "-o";
-		parameters[3] = "C:\\Anko\\scorpio_test.txt";
-		parameters[4] = "-s";
-		parameters[5] = "1";
-		parameters[6] = "-t";
-		parameters[7] = "2";
 		Scorpio.main(parameters);
 	}
+	
+//	@Override
+//	protected void invoke(String[] parameters) {
+////		for(int i=0;i<parameters.length;i++)
+////			System.out.println(parameters[i]);
+//		parameters = new String[8];
+//		parameters[0] = "-d";
+//		parameters[1] = "C:\\Anko\\ArgyleMethodList.java";		
+//		parameters[2] = "-o";
+//		parameters[3] = "C:\\Anko\\scorpio_test.csv";
+//		parameters[4] = "-s";
+//		parameters[5] = "1";
+//		parameters[6] = "-t";
+//		parameters[7] = "2";
+//		Scorpio.main(parameters);
+//	}
 
 	@Override
 	public boolean canOutput() {
