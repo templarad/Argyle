@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 
+import yoshikihigo.tinypdg.scorpio.Scorpio;
 import jp.ac.kyushu.argyle.impl.model.CodeCloneDetectDataReceiver;
 import jp.ac.kyushu.argyle.impl.model.DataReceiver;
 import jp.ac.kyushu.argyle.impl.model.MLMiningDataReceiver;
@@ -116,6 +117,7 @@ public class ArgyleMethodList {
 	
 	@Agl
 	public void DetectCodeClone(){
+
 		CodeCloneDetectDataReceiver ccddR = CodeCloneDetectDataReceiver.getInstance();
 		if (ccddR.canOutput()) {
 			ccddR.execute();
@@ -125,6 +127,7 @@ public class ArgyleMethodList {
 			        "Error",
 			        "No data can be output!");
 		}
+
 	}
 	
 //=====================================

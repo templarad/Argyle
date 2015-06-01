@@ -11,6 +11,7 @@ import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.dialogs.MessageDialog;
 
+import yoshikihigo.tinypdg.scorpio.Scorpio;
 import jp.ac.kyushu.argyle.impl.ArgyleModelReader;
 import jp.ac.kyushu.argyle.impl.basefunction.ProjectReader;
 import jp.ac.kyushu.argyle.impl.exception.NoMatchMethodException;
@@ -30,8 +31,9 @@ public class ArgyleController {
 	
 	public static void run(){
 		aglFile = null;
-
-		log.debug("It runs!");
+		
+		log.debug("It runs");
+		
 		IProject project = ProjectReader.getProject();
 		if (project == null) {
 			MessageDialog.openError(
