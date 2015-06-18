@@ -9,3 +9,4 @@ package jp.ac.kyushu;
 public class ArgyleRuntimeModule extends jp.ac.kyushu.AbstractArgyleRuntimeModule {
 
 }
+
