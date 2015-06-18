@@ -9,22 +9,30 @@ Model:
 	
 Import:	
 	
-	(ImportStyle='ImportMbox' importPath=STRING ';')|
-	(ImportStyle='ImportGitLog' importPath=STRING ';')
-	
+	//('--'ImportStyle='ImportMbox' '-im' importPath=STRING ';')|
+	//('--'ImportStyle='ImportGitLog' '-i' importPath=STRING ';')|
+	('--'ImportStyle='ImportCodeDir' '-ic' importPath=STRING ';')
+	//('--'ImportStyle='ImportAnotherCodeDir' '-ia' importPath=STRING ';')|
+	//('--'ImportStyle='ChangeTrainData' '-ict' importPath=STRING ';')|
+	//('--'ImportStyle='UseJoinData' '-iu' importPath=STRING ';')
 ;
 	
 Calc:
-	(dsl='DefectPredict' ';')|  //run NCCF
-	(dsl='SetDetectMinSize' size=INT ';')|
-	(dsl='UseThread' size=INT ';')|
-	(dsl='Output' path=STRING ';')|
-	(dsl='CalcSocialMetrics' ';')|
-	(dsl='DrawGraph' ';')|
-	(dsl='ResolveMailAlias' ';')|
-	(dsl='ResolveMailDeveloper' ';')|
-	(dsl='RemoveMailQuote' ';')|
-	(dsl='ExtractThread' ';')|
-	(dsl='RemoveUselessMail' ';')
+	
+	('--'dsl='Output' '-o' path=STRING ';')|
+	('--'dsl='SetDetectMinSize' '-s' size=INT ';')|
+	('--'dsl='SetThread' '-t' size=INT ';')|
+	('--'dsl='DetectCodeClone' '-d'';')
+//	(dsl='DefectPredict' ';')|  //run NCCF
+//	(dsl='SetDetectMinSize' size=INT ';')|
+//	(dsl='UseThread' size=INT ';')|
+//	(dsl='Output' path=STRING ';')|
+//	(dsl='CalcSocialMetrics' ';')|
+//	(dsl='DrawGraph' ';')|
+//	(dsl='ResolveMailAlias' ';')|
+//	(dsl='ResolveMailDeveloper' ';')|
+//	(dsl='RemoveMailQuote' ';')|
+//	(dsl='ExtractThread' ';')|
+//	(dsl='RemoveUselessMail' ';')
 	
 ;

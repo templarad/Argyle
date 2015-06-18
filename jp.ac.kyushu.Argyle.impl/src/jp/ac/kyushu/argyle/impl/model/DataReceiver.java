@@ -3,13 +3,20 @@ package jp.ac.kyushu.argyle.impl.model;
 import java.io.File;
 import java.io.IOException;
 
-import org.eclipse.jface.dialogs.MessageDialog;
+import lombok.Data;
 
+import org.eclipse.jface.dialogs.MessageDialog;
+@Data
 public abstract class DataReceiver {
 
-	public void output(String path){
+	private String path;
+	
+	boolean bool = false;
+	
+	public void execute(){
 		
 		File file = new File(path);
+		
 		if(!file.exists()){
 			try {
 				file.createNewFile();
